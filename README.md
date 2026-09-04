@@ -46,9 +46,9 @@ The database consists of **6 entities**:
 
 ## 🎥 YouTube Walkthrough
 
-Watch my walkthrough video here:
+Watch my walkthrough video here:https://youtu.be/wDM0rrPzHcc
 
-https://www.youtube.com/watch?v=https://youtu.be/wDM0rrPzHccYOUR_VIDEO_ID
+YOUR_ACTUAL_VIDEO_LINK
 
 ## 👨‍💻 Author
 
@@ -57,5 +57,3 @@ https://www.youtube.com/watch?v=https://youtu.be/wDM0rrPzHccYOUR_VIDEO_ID
 ## 📅 Submission Date
 
 September 2026
-
----
