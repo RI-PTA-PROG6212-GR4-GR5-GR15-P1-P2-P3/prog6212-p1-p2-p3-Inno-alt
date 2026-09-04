@@ -49,7 +49,7 @@ The database consists of **6 entities**:
 
 ## 🎥 YouTube Walkthrough
 
-[Watch the complete walkthrough video here](YOUR_YOUTUBE_LINK_HERE)
+[Watch the complete walkthrough video here](YOURhttps://youtu.be/wDM0rrPzHcc_YOUTUBE_LINK_HERE)
 
 The video covers:
 - ERD design decisions and relationships
