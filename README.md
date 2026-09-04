@@ -1,21 +1,72 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/mr-hqvA6)
-# RaceDay Event Management System - Part 1
+# 🏃 RaceDay Event Management System - Part 1
 
-## System Description
-RaceDay is a full-stack web-based event management system designed for the South African road running, walking, and cycling community.
+## 📖 System Description
+RaceDay is a full-stack web-based event management system designed specifically for the South African road running, walking, and cycling community. The platform allows Event Organisers to create and manage events, categories, and participant results, while Participants can browse upcoming events, enter events, track their personal performance history, and prepare for race day using live weather and route information.
 
-## Roles
-- **Participant**: Browse events, register, view performance history
-- **Organiser**: Create events, manage entries, submit results
+## 👥 Roles
 
-## Part 1 Deliverables
-- ✅ ERD Diagram
-- ✅ API Endpoint Plan  
-- ✅ SQL Database Script
-- ✅ CI/CD Workflow
+### 🏅 Participant
+- Browse and search for upcoming events
+- Register for events and categories
+- View personal entry history
+- Track performance results
+- Update personal profile
 
-## Author
-Faith Sadiki
+### 📋 Organiser
+- Create and manage events
+- Add categories to events
+- View participant entries
+- Submit and update race results
+- Manage event details
 
-## Submission Date
+## 📊 Database Design (Part 1)
+
+The database consists of **6 entities**:
+
+| Entity | Description |
+|--------|-------------|
+| **User** | Authentication and login details |
+| **Participant** | Personal details for race participants |
+| **Organiser** | Event organisers and their organisations |
+| **Event** | Race/event details |
+| **Entry** | Participant registrations for events |
+| **Result** | Race results for participants |
+
+## ✅ Part 1 Deliverables
+
+| Section | Description | File |
+|---------|-------------|------|
+| **A** | Entity Relationship Diagram (ERD) | `docs/PROG6212 PART 1 2026.pdf` |
+| **B** | API Endpoint Plan | `docs/PROG6212 PART 1 2026.pdf` |
+| **C** | SQL Database Script | `docs/raceday-schema.sql` |
+| **CI/CD** | GitHub Actions Workflow | `.github/workflows/ci.yml` |
+
+## 🔧 CI/CD Status
+
+✅ **Build Passing**
+
+![Successful Build](screenshot-success.png)
+
+## 🎥 YouTube Walkthrough
+
+[Watch the complete walkthrough video here](YOUR_YOUTUBE_LINK_HERE)
+
+The video covers:
+- ERD design decisions and relationships
+- API endpoint planning and choices
+- SQL script demonstration (live run in SSMS)
+- Database verification queries
+
+## 👨‍💻 Author
+
+**Name:** Innocentia Tlotleng  
+**Course:** PROG6212  
+**Assignment:** Part 1 - System Planning and Database
+
+## 📅 Submission Date
+
 September 2026
+
+---
+
+© The Independent Institute of Education (Pty) Ltd 2026
