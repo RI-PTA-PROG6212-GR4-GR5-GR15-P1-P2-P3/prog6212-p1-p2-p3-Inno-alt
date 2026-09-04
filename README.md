@@ -48,7 +48,7 @@ The database consists of **6 entities**:
 
 Watch my walkthrough video here:
 
-https://www.youtube.com/watch?v=YOUhttps://youtu.be/wDM0rrPzHccR_VIDEO_ID
+https://www.youtube.com/watch?v=https://youtu.be/wDM0rrPzHccYOUR_VIDEO_ID
 
 ## 👨‍💻 Author
 
