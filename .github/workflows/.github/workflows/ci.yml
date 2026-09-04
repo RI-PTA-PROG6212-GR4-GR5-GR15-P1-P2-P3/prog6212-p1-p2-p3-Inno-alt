@@ -1,0 +1,55 @@
+name: CI - Validate Repository Structure
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check docs folder exists
+      run: |
+        if [ -d "docs" ]; then
+          echo "✅ docs folder exists"
+        else
+          echo "❌ docs folder missing"
+          exit 1
+        fi
+    
+    - name: Check ERD exists
+      run: |
+        if ls docs/erd.* 1> /dev/null 2>&1; then
+          echo "✅ ERD file exists"
+        else
+          echo "❌ ERD file missing"
+          exit 1
+        fi
+    
+    - name: Check API Endpoint Plan exists
+      run: |
+        if ls docs/api-endpoints.* 1> /dev/null 2>&1; then
+          echo "✅ API Endpoint Plan exists"
+        else
+          echo "❌ API Endpoint Plan missing"
+          exit 1
+        fi
+    
+    - name: Check SQL Script exists
+      run: |
+        if [ -f "docs/raceday-schema.sql" ]; then
+          echo "✅ SQL Script exists"
+        else
+          echo "❌ SQL Script missing"
+          exit 1
+        fi
+    
+    - name: All checks passed
+      run: |
+        echo "✅ All required files are present!"
+        echo "✅ Repository structure is valid!"
