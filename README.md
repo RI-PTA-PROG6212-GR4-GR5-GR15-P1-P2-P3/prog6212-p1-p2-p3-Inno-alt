@@ -1,270 +1,124 @@
 # RaceDay Event Management System
 
-## System Description
+## About This Project
 
-RaceDay is a full-stack web-based event management system designed for the South African road running, walking, and cycling community. The platform allows Event Organisers to create and manage events, while Participants can browse events, register, and track their personal performance.
+This is a full-stack event management system called RaceDay, built for the South African road running, walking, and cycling community. The project was completed across two parts for PROG6212.
+
+Part 1 covered system planning, database design, and SQL scripting.
+
+Part 2 covers the RESTful API built with ASP.NET Core.
 
 ## Roles
 
-### Participant
-- Browse and search for upcoming events
-- Register for events
-- View personal entry history
-- Track performance results
+The system has two user roles:
 
-### Organiser
-- Create and manage events
-- View participant entries
-- Submit and update race results
+**Participant** - Can browse events, register for events, view their entry history, and track their performance results.
 
----
+**Organiser** - Can create and manage events, view participant entries, and submit race results.
 
 ## Database Design
 
-The database consists of 6 entities:
+The database has 6 entities:
 
-| Entity | Description |
-|--------|-------------|
+| Entity | Purpose |
+|--------|---------|
 | User | Authentication and login details |
 | Participant | Personal details for race participants |
 | Organiser | Event organisers and their organisations |
-| Event | Race/event details |
+| Event | Race and event details |
 | Entry | Participant registrations for events |
 | Result | Race results for participants |
 
----
+## What Was Built in Part 2
 
-## Deliverables
+A complete RESTful API using ASP.NET Core 9, Entity Framework Core, and SQL Server.
 
-### Part 1 - System Planning and Database
+### API Endpoints
 
-| Section | Description | File |
-|---------|-------------|------|
-| A | Entity Relationship Diagram (ERD) | docs/PROG6212 PART 1 2026.pdf |
-| B | API Endpoint Plan | docs/PROG6212 PART 1 2026.pdf |
-| C | SQL Database Script | docs/raceday-schema.sql |
+| Resource | Count | What It Does |
+|----------|-------|--------------|
+| Auth | 2 | Register and Login with JWT |
+| Participants | 4 | Profile management and personal data |
+| Organisers | 3 | Profile and event listings |
+| Events | 6 | Create, read, update, delete, filter, upcoming |
+| Categories | 5 | Event categories by age and distance |
+| Entries | 6 | Enrolments, cancellations, payments |
+| Results | 6 | Submit results, view leaderboards |
 
-### Part 2 - RESTful API Development
+Total: approximately 32 endpoints.
 
-| Component | Description | Location |
-|-----------|-------------|----------|
-| API Project | ASP.NET Core 9 Web API | Part2/RaceDayAPI/ |
-| Test Project | xUnit unit tests | Part2/RaceDayAPI.Tests/ |
-| CI/CD | GitHub Actions workflow | .github/workflows/ |
+### Authentication
 
----
+Users register and log in with email and password. Passwords are hashed using BCrypt before storage.
 
-## Tech Stack
+On login, the API returns a JWT token containing the user's ID and role. This token is required for protected endpoints.
 
-| Technology | Purpose |
-|------------|---------|
-| ASP.NET Core 9 | Web API framework |
-| Entity Framework Core 9 | ORM for SQL Server (Code-First) |
-| SQL Server (LocalDB) | Database |
-| JWT (JSON Web Tokens) | Authentication |
-| BCrypt.Net | Password hashing |
-| Swagger / OpenAPI | API documentation and testing |
-| xUnit + Moq + FluentAssertions | Unit testing |
-| GitHub Actions | CI/CD |
+Role-based access is enforced so that Organisers and Participants can only access their own functionality. For example, only Organisers can create or delete events, and only Participants can enrol in events.
 
----
+### Unit Testing
+
+21 unit tests were written using xUnit, Moq, and FluentAssertions. The tests cover:
+
+- User registration for both roles
+- Login with valid and invalid credentials
+- Password hashing verification
+- Event creation by Organisers
+- Rejection of events with invalid dates
+- Role-based access enforcement
+- Event enrolment by Participants
+- Prevention of duplicate enrolments
+- Event capacity limits
+- Entry cancellation
+
+All 21 tests pass.
+
+### CI/CD
+
+GitHub Actions runs on every push to main. The workflow restores packages, builds the API project, and reports the build status.
+
+## Technologies Used
+
+- ASP.NET Core 9
+- Entity Framework Core 9 (Code-First approach)
+- SQL Server (LocalDB)
+- JWT for authentication
+- BCrypt.Net for password hashing
+- Swagger for API documentation
+- xUnit, Moq, and FluentAssertions for testing
+- GitHub Actions for CI/CD
 
 ## Project Structure
 
-prog6212-p1-p2-p3-Inno-alt/
-├── README.md
-├── docs/
-│   ├── PROG6212 PART 1 2026.pdf
-│   └── raceday-schema.sql
-└── Part2/
-    ├── RaceDayAPI/                  Main API project
-    │   ├── Controllers/             API endpoints (7 files)
-    │   ├── Data/                    DbContext
-    │   ├── DTOs/                    Data Transfer Objects
-    │   ├── Migrations/              EF Core migrations
-    │   ├── Models/                  Entity classes (7 files)
-    │   ├── Services/                Business logic (AuthService)
-    │   ├── Program.cs
-    │   ├── appsettings.json
-    │   └── RaceDayAPI.csproj
-    │
-    └── RaceDayAPI.Tests/            Unit test project
-        ├── AuthServiceTests.cs
-        ├── EventsControllerTests.cs
-        ├── EntriesControllerTests.cs
-        └── RaceDayAPI.Tests.csproj
+Part2/
+└── RaceDayAPI/
+    ├── Controllers/
+    ├── Data/
+    ├── DTOs/
+    ├── Migrations/
+    ├── Models/
+    ├── Services/
+    ├── Program.cs
+    ├── appsettings.json
+    └── RaceDayAPI.csproj
 
----
+## Screenshots
 
-## Setup and Run Instructions
+The API running in Swagger:
 
-### Prerequisites
+![Swagger](<img width="1038" height="929" alt="Screenshot 2026-10-15 113008" src="https://github.com/user-attachments/assets/c38605cc-1b6b-4db6-8a7f-407d27302459" />
+screenshot-success.png)
 
-- .NET 9 SDK
-- SQL Server or SQL Server LocalDB
-- Visual Studio 2022 (or VS Code with C# extension)
-- SQL Server Management Studio (optional, for viewing database)
+## Video Walkthrough
 
-### Step 1: Clone the Repository
-
-git clone https://github.com/RI-PTA-PROG6212-GR4-GR5-GR15-P1-P2-P3/prog6212-p1-p2-p3-Inno-alt.git
-cd prog6212-p1-p2-p3-Inno-alt
-
-### Step 2: Navigate to the API Project
-
-cd Part2/RaceDayAPI
-
-### Step 3: Restore NuGet Packages
-
-dotnet restore
-
-### Step 4: Create the Database
-
-dotnet ef database update
-
-This creates the RaceDayDB database with all tables.
-
-### Step 5: Run the API
-
-dotnet run
-
-The API will start and display:
-
-Now listening on: https://localhost:7080
-Now listening on: http://localhost:5030
-
-### Step 6: Open Swagger UI
-
-Open a browser and navigate to:
-
-https://localhost:7080/swagger
-
-All endpoints will be visible and testable.
-
-### Step 7: Run Unit Tests
-
-cd ../RaceDayAPI.Tests
-dotnet test
-
-Expected output: 21 tests passing.
-
----
-
-## Authentication Flow
-
-1. Register a new user at POST /api/Auth/register
-   - Provide: email, password, role (Participant or Organiser), and profile details
-2. Login at POST /api/Auth/login
-   - Provide: email and password
-   - Receive: JWT token with user ID and role claims
-3. Use the token in subsequent requests:
-   - Header: Authorization: Bearer {token}
-4. Role-based access:
-   - Endpoints marked [Authorize(Roles = "Organiser")] require an Organiser token
-   - Endpoints marked [Authorize(Roles = "Participant")] require a Participant token
-
-Passwords are hashed using BCrypt before storage. Plain-text passwords are never saved.
-
----
-
-## API Endpoints
-
-| Resource | Count | Description |
-|----------|-------|-------------|
-| Auth | 2 | Register, Login |
-| Participants | 4 | Profile (GET, PUT), entries, results |
-| Organisers | 3 | Profile (GET, PUT), events list |
-| Events | 6 | CRUD, upcoming, filter by city/province |
-| Categories | 5 | CRUD by event |
-| Entries | 6 | Enrol, cancel, payment, view |
-| Results | 6 | Submit, view, leaderboard, history |
-
-Total: approximately 32 endpoints, all testable through Swagger UI.
-
----
-
-## Unit Testing
-
-21 unit tests covering the following scenarios:
-
-### Authentication
-- Register Participant successfully
-- Register Organiser successfully
-- Reject duplicate email
-- Reject invalid role
-- Login with valid credentials
-- Reject wrong password
-- Reject non-existent email
-- Verify password is hashed (BCrypt)
-
-### Events Management
-- Organiser can create event
-- Reject event with past date
-- Reject event with invalid deadline
-- Get all active events
-- Get event by ID
-- Return 404 for non-existent event
-- Organiser can update own event
-- Organiser can soft-delete own event
-
-### Enrolments
-- Participant can enrol in event
-- Reject enrolment after deadline
-- Reject duplicate enrolment
-- Reject enrolment when event is full
-- Organiser can view event entries
-- Participant can cancel own entry
-
-All tests pass locally and via GitHub Actions CI/CD.
-
----
-
-## CI/CD
-
-Continuous Integration is configured via GitHub Actions.
-
-The workflow file is located at:
-
-.github/workflows/part2-ci.yml
-
-What it does on every push to main:
-
-1. Checks out the repository
-2. Sets up .NET 9
-3. Restores NuGet packages
-4. Builds the API project
-5. Reports success or failure
-
-Status: Passing
-
----
-
-## YouTube Walkthrough
-
-Watch the complete Part 2 walkthrough here:
+A full walkthrough of the API is available here:
 
 [Part 2 Walkthrough Video](https://youtu.be/rj8jsEPCZyw)
 
-The video covers:
-- Running the API in Visual Studio
-- Testing endpoints in Swagger UI
-- Authentication flow (register, login, JWT)
-- Database verification in SSMS
-- Unit tests passing (21 tests)
-- CI/CD pipeline explanation
-
----
-
 ## Author
 
-Name: Innocentia Tlotleng
-Course: PROG6212
-Assignment: Part 1 and Part 2 - RaceDay Event Management System
-
-## Submission Date
-
+Innocentia Tlotleng
+PROG6212
 October 2026
 
 ---
 
-Copyright The Independent Institute of Education (Pty) Ltd 2026
