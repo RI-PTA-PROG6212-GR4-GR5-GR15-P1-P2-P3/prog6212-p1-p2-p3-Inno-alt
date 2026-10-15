@@ -1,0 +1,29 @@
+name: Part 2 CI - Build Project
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 9
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore packages
+      run: dotnet restore Part2/RaceDayAPI/RaceDayAPI.csproj
+
+    - name: Build project
+      run: dotnet build Part2/RaceDayAPI/RaceDayAPI.csproj --no-restore --configuration Release
+
+    - name: Build successful
+      run: echo "Build completed successfully"
